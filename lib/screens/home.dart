@@ -12,55 +12,62 @@ class Screenhome extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 56, 96, 57),
+        backgroundColor:const Color.fromARGB(255, 16, 155, 20),
         automaticallyImplyLeading: false,
-        title:const Text(
-          'Wee chat',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-          ),
+        title: Row(
+          children: [
+            Container(
+              height: 50,
+              width: 50,
+              decoration:const  BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/wechatsquare.webp')),
+                borderRadius: BorderRadius.all(Radius.circular(30))
+              ),
+            ),
+            const SizedBox(width: 10,),
+            const Text(
+              'Wee chat',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w500,
+                color: Colors.white
+              ),
+            ),
+          ],
         ),
-        // toolbarHeight: 10  ,
         actions: [
           IconButton(onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) { return ScreenSearch();}));
            },
-           icon: Icon(Icons.search)
+           icon: const Icon(Icons.search,color: Colors.white,)
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [              
-              TextButton(onPressed: () {
-                showDialog(
-                  context: context, 
-                  builder: (ctx1) {
-                    return AlertDialog(
-                      // title: Text('Do you want to logout'),
-                      content: Text('Do you want to logout'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            signout(context);
-                          }, 
-                          child: Text('Yes')
-                        ),
-                         TextButton(
-                          onPressed: () {
-                            // Navigator.of(context).pop();
-                            back(context);
-                          }, 
-                          child: Text('No')
-                        )
-                      ],
-                    );
-                  }
-                );  
-              }, 
-              child: Text('Logout',style:TextStyle(color: Colors.white),)
-            ),
-            ],
-          )
+          TextButton(
+            onPressed: () {
+            showDialog(
+              context: context, 
+              builder: (ctx1) {
+                return AlertDialog(
+                  content: Text('Do you want to logout'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        signout(context);
+                      }, 
+                      child: Text('Yes')
+                    ),
+                     TextButton(
+                      onPressed: () {
+                        back(context);
+                      }, 
+                      child: Text('No')
+                    )
+                  ],
+                );
+              }
+            );  
+          }, 
+          child: const Text('Logout',style:TextStyle(color: Colors.white),)
+         )
         ],
       ),
 
@@ -70,41 +77,31 @@ class Screenhome extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (ctx,index){
             return ListTile(
-              // minVerticalPadding: 25 ,
-              title: Text('Person'),
-              subtitle: Text('hey there iam using weechat'),
-              leading:index.isEven ?CircleAvatar(
+              title: const Text('Person'),
+              subtitle: const Text('hey there iam using weechat'),
+              leading:index.isEven ?const CircleAvatar(
                 radius:25,
                 backgroundImage: AssetImage('assets/images/user image.jpg'),
               )
-              :Image(width: 50 , image:AssetImage('assets/images/user2.jpg'),),
+              :const Image(width: 50 , image:AssetImage('assets/images/user2.jpg'),),
               trailing: Column(
                 children: [
                   Text('${index+1}:47 pm'),
-                  SizedBox(height: 10,),
-                  // CircleAvatar(
-                  //   child: Text('${index+1}'),
-                  //   radius: 12,
-                  //   backgroundColor: Colors.green,
-                  // )
+                  const SizedBox(height: 10,),
+                  CircleAvatar(
+                    radius: 12,
+                    backgroundColor: Colors.green,
+                    child: Text('${index+1}'),
+                  )
                 ],
               ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> Chatscreen()));
-                // showDialog(
-                //   context: context, 
-                //   builder: (ctx) {
-                //     return AlertDialog(
-                //       title: Text('Clicked on $index'),
-
-                //     );
-                //   }
-                // );
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> Chatscreen()));                
               },
             );
           }, 
           separatorBuilder: (ctx,index){
-            return Divider(height: 10,);
+            return const Divider(height: 10,);
           }, 
           itemCount: 15 ,
         ),
@@ -115,8 +112,8 @@ class Screenhome extends StatelessWidget {
 
 
   signout(BuildContext ctx) async{
-  final _sharedprefs = await SharedPreferences.getInstance();
-  await _sharedprefs.clear();
+  final sharedprefs = await SharedPreferences.getInstance();
+  await sharedprefs.clear();
 
     Navigator.of(ctx).pushAndRemoveUntil(
       MaterialPageRoute(builder: (ctx)=>ScreenLogin()), (route) => false);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screens/home.dart';
 
 class Chatscreen extends StatelessWidget {
   const Chatscreen({super.key});
@@ -7,19 +8,20 @@ class Chatscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 56, 96, 57),
-        title: Text('Person'),
+        backgroundColor: const  Color.fromARGB(255, 16, 155, 20),
+        leading: IconButton(
+          onPressed: (){
+            back(context);
+          }, 
+          icon: const Icon(Icons.arrow_back,color: Colors.white,)
+        ),
+        title: const Text('Person',style: TextStyle(color: Colors.white),),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.call)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.video_call_rounded)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.menu))
+          IconButton(onPressed: () {}, icon: const Icon(Icons.call,color: Colors.white,)),
+          IconButton(onPressed: () {}, icon:const Icon(Icons.video_call_rounded,color: Colors.white,)),
+          IconButton(onPressed: () {}, icon:const Icon(Icons.menu,color: Colors.white,))
         ],
       ),
-
-      
-
-
-
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.green,
         selectedFontSize: 15 ,

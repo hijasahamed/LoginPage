@@ -20,12 +20,6 @@ class _ScreenSplashState extends State<ScreenSplash> {
   }
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 248, 245, 245),
@@ -33,12 +27,6 @@ class _ScreenSplashState extends State<ScreenSplash> {
         child: Image.asset('assets/images/wechat.png',height:300,),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
   }
 
   Future<void> gotologin() async{
